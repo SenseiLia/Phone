@@ -8,7 +8,7 @@ namespace Phone
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-O83IAAO;Database=TestDBSGMK;Trusted_Connection=True;"); // Замените "YourConnectionString" на вашу строку подключения к базе данных
+            optionsBuilder.UseSqlServer("Server=DESKTOP-O83IAAO;Database=TestDBSGMK;Trusted_Connection=True;"); 
         }
     }
 }
