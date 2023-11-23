@@ -1,0 +1,71 @@
+﻿@page "/CustomTable"
+
+
+
+<h3>CustomTable</h3>
+
+
+<input type="text" @bind="filterText" />
+<button @onclick="FilterUsers">Filter</button>
+
+
+
+<table class="table">
+  
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Surnamer</th>
+            <th>LastName</th>
+            <th>Patronymic</th>
+            <th>Company</th>
+            <th>Post</th>
+            <th>Cabinet</th>
+            <th>Phone</th>
+            <th>Email</th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Surname</td>
+                <td>@user.LastName</td>
+                <td>@user.Patronymic</td>
+                <td>@user.Company</td>
+                <td>@user.Post</td>
+                <td>@user.Cabinet</td>
+                <td>@user.Phone</td>
+                <td>@user.Email</td>
+                <td>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private string filterText = "";
+    private List<User> users = new List<User>
+    {
+
+    new User {Id = 1,Surname= "John",LastName= " Doe",Patronymic="K" ,Company = "SGMK",Cabinet= "5",Phone = "1234567890", Post = "123 Main St", Email = "john@example.com" },
+       new User { LastName = "Jane Smith", Phone = "9876543210", Post = "456 Elm St", Email = "jane@example.com" }
+    };
+
+
+ private void FilterUsers()
+ {
+     users = users.Where(u => u.LastName.Contains(filterText) || u.Phone.Contains(filterText)).ToList();
+ }
+
+
+
+}
+
+
+
+

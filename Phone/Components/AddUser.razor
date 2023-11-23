@@ -1,0 +1,71 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using System.Threading.Tasks
+
+@page "/users"
+
+<h3>AddUser</h3>
+
+
+<form>
+  
+    <label for="Id">Id:</label>
+    <input type="text" id="Id" @bind="newUser.Id" />
+    <br />
+    <label for="Surname">Surname:</label>
+    <input type="text" id="Surname" @bind="newUser.Surname" />
+    <br />
+    <label for="LastName">LastName:</label>
+    <input type="text" id="LastName" @bind="newUser.LastName" />
+    <br />
+    <label for="Patronymic">Patronymic:</label>
+    <input type="text" id="Patronymic" @bind="newUser.Patronymic" />
+    <br />
+    <label for="Company">Company:</label>
+    <input type="text" id="Company" @bind="newUser.Company" />
+    <br />
+    <label for="Cabinet">Cabinet:</label>
+    <input type="text" id="Cabinet" @bind="newUser.Cabinet" />
+    <br />
+    <label for="Phone">Phone:</label>
+    <input type="tel" id="Phone" @bind="newUser.Phone" />
+    <br />
+    <label for="Email">Email:</label>
+    <input type="text" id="Email" @bind="newUser.Email" />
+    <br />
+
+    <button @onclick="AddNewUser">Add</button>
+
+</form>
+
+@code {
+    private User newUser = new User();
+    private string errorMessage = "";
+
+    private void AddNewUser()
+    {
+        // Validation logic
+        if (string.IsNullOrWhiteSpace(newUser.Surname) ||
+        string.IsNullOrWhiteSpace(newUser.LastName) ||
+        string.IsNullOrWhiteSpace(newUser.Patronymic) ||
+        string.IsNullOrWhiteSpace(newUser.Company) ||
+        string.IsNullOrWhiteSpace(newUser.Post) ||
+        string.IsNullOrWhiteSpace(newUser.Cabinet) ||
+         string.IsNullOrWhiteSpace(newUser.Phone) ||
+          string.IsNullOrWhiteSpace(newUser.Email))
+        {
+            errorMessage = " required";
+        }
+        else
+        {
+            // Save user to list or database
+            newUser = new User(); // Clear form
+            errorMessage = "";
+        }
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <p>@errorMessage</p>
+}
